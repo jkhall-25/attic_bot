@@ -22,7 +22,7 @@ for (const file of commandFiles) {
 }
 
 // When the client is ready, run this code (only once)
-client.once('ready', () => {
+client.once('clientReady', () => {
 	console.log('Ready!');
 });
 

@@ -12,5 +12,9 @@
     "contributors": [],
     "devDependencies": {
         "eslint": "^8.24.0"
+    },
+    "dependencies": {
+        "config": "^4.1.1",
+        "discord.js": "^14.25.0"
     }
 }
