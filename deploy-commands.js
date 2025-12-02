@@ -4,19 +4,36 @@ const { REST, Routes } = require('discord.js');
 const { clientId, guildId, token } = require('./config.json');
 
 const commands = []
-const commandsPath = path.join(__dirname, 'commands'); // commands dir
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js')); // filter non .js files
+// Grab all the command files from the command directory
+const foldersPath = path.join(__dirname, 'commands');
+const commandFolders = fs.readdirSync(foldersPath);
 
 // add all command files to array of commands
-for (const file of commandFiles) {
-	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
-	commands.push(command.data.toJSON());
+for (const folder of commandFolders) {
+	// Grab all the command files from the commands directory
+	const commandsPath = path.join(foldersPath, folder);
+	const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith('.js'));
+	for (const file of commandFiles) {
+		const filePath = path.join(commandsPath, file);
+		const command = require(filePath);
+		if ('data' in command && 'execute' in command) {
+			commands.push(command.data.toJSON());
+		} else {
+			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+		}
+	}
 }
 
-const rest = new REST({ version: '10' }).setToken(token);
+const rest = new REST().setToken(token);
 
-rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
-	.then((data) => console.log(`Successfully registered ${data.length} application commands.`))
-	.catch(console.error);
+(async () => {
+	try {
+		console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
+		const data = await rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands });
+
+		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+	} catch (error) {
+		console.error(error);
+	}
+})();
