@@ -11,10 +11,27 @@
     "author": "Jules",
     "contributors": [],
     "devDependencies": {
-        "eslint": "^8.24.0"
+        "@eslint/eslintrc": "^3.3.3",
+        "@eslint/js": "^9.39.1",
+        "eslint": "file:latest/js@latest",
+        "globals": "^16.5.0"
     },
     "dependencies": {
         "config": "^4.1.1",
         "discord.js": "^14.25.0"
-    }
+    },
+    "description": "Atticbot requires a bot token stored in config.json. The format of config.json is:\r > {\r   \"clientId\": [clientID],\r   \"guildId\": [guildID],\r   \"token\": [bot token]\r }",
+    "main": "atticbot.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jkhall-25/attic_bot.git"
+    },
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jkhall-25/attic_bot/issues"
+    },
+    "homepage": "https://github.com/jkhall-25/attic_bot#readme"
 }
