@@ -1,5 +1,6 @@
+import { fs } from 'node:fs';
+
 const { SlashCommandBuilder, PermissionFlagsBits, InteractionContextType } = require('discord.js');
-const fs = require('node:fs');
 
 function WarnDetails(rule, date, reason) {
 	this.rule = rule;
@@ -11,7 +12,6 @@ function Warn(id, warn) {
 	this.id = id;
 	this.warn = warn;
 }
-
 
 module.exports = {
 	data: new SlashCommandBuilder()

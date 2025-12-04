@@ -2,7 +2,9 @@
 import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { Client, Collection, GatewayIntentBits, MessageFlags } from 'discord.js';
-import { token } from './config.json';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import token from './config.json' with { type:'json' };
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -11,8 +13,11 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 // access commands:
 client.commands = new Collection();
 // path to commands dir:
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const foldersPath = join(__dirname, 'commands');
 const commandFolders = readdirSync(foldersPath);
+
 
 for (const folder of commandFolders) {
 	const commandsPath = join(foldersPath, folder);
@@ -20,7 +25,7 @@ for (const folder of commandFolders) {
 	const commandFiles = readdirSync(commandsPath).filter((file) => file.endsWith('.js'));
 	for (const file of commandFiles) {
 		const filePath = join(commandsPath, file);
-		const command = require(filePath);
+		const command = await import(filePath);
 		if ('data' in command && 'execute' in command) {
 			// Set a new item in the Collection
 			// With the key as the command name and the value as the exported module

@@ -1,6 +1,7 @@
 {
     "name": "atticbot",
     "version": "1.0.0",
+    "type": "module",
     "keywords": [
         "util",
         "functional",
@@ -11,6 +12,7 @@
     "author": "Jules",
     "contributors": [],
     "devDependencies": {
+        "@tsconfig/node-lts": "latest",
         "@eslint/eslintrc": "^3.3.3",
         "@eslint/js": "^9.39.1",
         "eslint": "file:latest/js@latest",
