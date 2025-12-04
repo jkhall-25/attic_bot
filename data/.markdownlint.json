@@ -1,0 +1,6 @@
+{
+    "MD003": { "style": "atx_closed" },
+    "MD007": { "indent": 4 },
+	"MD041": {"allow_preamble": true},
+    "no-hard-tabs": false
+}
