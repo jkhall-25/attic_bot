@@ -1,0 +1,7 @@
+# dependency installations
+node_modules/
+
+# this contains your secrets 
+# DO NOT publish config.json to a public repo
+config.json 
+
