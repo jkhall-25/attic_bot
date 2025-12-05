@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { Client, Collection, GatewayIntentBits, MessageFlags } from 'discord.js';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import token from './config.json' with { type:'json' };
+import { token } from './config.json';
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
