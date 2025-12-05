@@ -129,10 +129,3 @@
   },
   "homepage": "https://github.com/jkhall-25/attic_bot#readme"
 }
-
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-eval "$(oh-my-posh init zsh)"
-
-eval "$(oh-my-posh --init --shell zsh --config /mnt/c/Users/Jules/.mytheme.omp.json)"
